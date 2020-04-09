@@ -160,7 +160,7 @@ qsub: job 1940648.unity-1.asc.ohio-state.edu ready
 (base) [veraponcedeleon.1@u084 1940648.unity-1.asc.ohio-state.edu]$ mkdir Fastqc
 (base) [veraponcedeleon.1@u084 1940648.unity-1.asc.ohio-state.edu]$ cd Fastqc/
 (base) [veraponcedeleon.1@u084 Fastqc]$ mv ../Raw_reads.tar.gz .
-(base) [veraponcedeleon.1@u084 Fastqc]$ tar -xzvf Raw_reads.tar.gz
+(base) [veraponcedeleon.1@u084 Fastqc]$ nohup tar -xzvf Raw_reads.tar.gz &
  ```
  
  Then I need to call a FASTQC module
