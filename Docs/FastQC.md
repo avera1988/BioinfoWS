@@ -161,6 +161,7 @@ qsub: job 1940648.unity-1.asc.ohio-state.edu ready
 (base) [veraponcedeleon.1@u084 1940648.unity-1.asc.ohio-state.edu]$ cd Fastqc/
 (base) [veraponcedeleon.1@u084 Fastqc]$ mv ../Raw_reads.tar.gz .
 (base) [veraponcedeleon.1@u084 Fastqc]$ nohup tar -xzvf Raw_reads.tar.gz &
+(base) [veraponcedeleon.1@u084 Fastqc]$ cd Raw_reads/Illumina/
  ```
  
  Then I need to call a FASTQC module
@@ -199,4 +200,71 @@ DESCRIPTION
 
  ```
  
- Now I can Run FastQC
+ **Now I can Run FastQC.**
+ 
+ Let's do it for the 51 reads so first create a Directory and generate a soft link or shortcut from this 51 reads inside this directory
+ 
+ ```console
+(base) [veraponcedeleon.1@u084 Illumina]$ mkdir 51.dir
+(base) [veraponcedeleon.1@u084 Illumina]$ cd 51.dir
+(base) [veraponcedeleon.1@u084 51.dir]$ ln -s ../51_R*fastq .
+(base) [veraponcedeleon.1@u084 51.dir]$ ls -l
+total 0
+lrwxrwxrwx 1 veraponcedeleon.1 research-eeob-sabree 14 Apr  8 20:28 51_R1.fastq -> ../51_R1.fastq
+lrwxrwxrwx 1 veraponcedeleon.1 research-eeob-sabree 14 Apr  8 20:28 51_R2.fastq -> ../51_R2.fastq
+ 
+ ```
+ Run FastQC
+ 
+ ```console
+ $ nohup fastqc -t 4 --noextract -f fastq 51_R1.fastq 51_R2.fastq &
+ [1]+  Done                    nohup fastqc -t 4 --noextract -f fastq 51_R1.fastq 51_R2.fastq
+(base) [veraponcedeleon.1@u084 51.dir]$ ls -lrth
+total 2.0M
+lrwxrwxrwx 1 veraponcedeleon.1 research-eeob-sabree   14 Apr  8 20:28 51_R2.fastq -> ../51_R2.fastq
+lrwxrwxrwx 1 veraponcedeleon.1 research-eeob-sabree   14 Apr  8 20:28 51_R1.fastq -> ../51_R1.fastq
+-rw------- 1 veraponcedeleon.1 research-eeob-sabree 1.5K Apr  8 20:31 nohup.out
+-rw-r--r-- 1 veraponcedeleon.1 research-eeob-sabree 402K Apr  8 20:31 51_R1_fastqc.zip
+-rw-r--r-- 1 veraponcedeleon.1 research-eeob-sabree 607K Apr  8 20:31 51_R1_fastqc.html
+-rw-r--r-- 1 veraponcedeleon.1 research-eeob-sabree 415K Apr  8 20:31 51_R2_fastqc.zip
+-rw-r--r-- 1 veraponcedeleon.1 research-eeob-sabree 613K Apr  8 20:31 51_R2_fastqc.html
+ ```
+ 
+ Unizp the directory
+ 
+ ```console
+ (base) [veraponcedeleon.1@u084 51.dir]$ unzip 51_R1_fastqc.zip 
+Archive:  51_R1_fastqc.zip
+   creating: 51_R1_fastqc/
+   creating: 51_R1_fastqc/Icons/
+   creating: 51_R1_fastqc/Images/
+  inflating: 51_R1_fastqc/Icons/fastqc_icon.png  
+  inflating: 51_R1_fastqc/Icons/warning.png  
+  inflating: 51_R1_fastqc/Icons/error.png  
+  inflating: 51_R1_fastqc/Icons/tick.png  
+  inflating: 51_R1_fastqc/summary.txt  
+  inflating: 51_R1_fastqc/Images/per_base_quality.png  
+  inflating: 51_R1_fastqc/Images/per_tile_quality.png  
+  inflating: 51_R1_fastqc/Images/per_sequence_quality.png  
+  inflating: 51_R1_fastqc/Images/per_base_sequence_content.png  
+  inflating: 51_R1_fastqc/Images/per_sequence_gc_content.png  
+  inflating: 51_R1_fastqc/Images/per_base_n_content.png  
+  inflating: 51_R1_fastqc/Images/sequence_length_distribution.png  
+  inflating: 51_R1_fastqc/Images/duplication_levels.png  
+  inflating: 51_R1_fastqc/Images/adapter_content.png  
+  inflating: 51_R1_fastqc/fastqc_report.html  
+  inflating: 51_R1_fastqc/fastqc_data.txt  
+  inflating: 51_R1_fastqc/fastqc.fo 
+ (base) [veraponcedeleon.1@u084 51.dir]$ cd 51_R1_fastqc/
+(base) [veraponcedeleon.1@u084 51_R1_fastqc]$ ls
+fastqc_data.txt  fastqc.fo  fastqc_report.html  Icons  Images  summary.txt
+(base) [veraponcedeleon.1@u084 51_R1_fastqc]$ more fastqc_data.txt 
+##FastQC	0.11.7
+>>Basic Statistics	pass
+#Measure	Value
+Filename	51_R1.fastq
+File type	Conventional base calls
+Encoding	Sanger / Illumina 1.9
+Total Sequences	2706330
+Sequences flagged as poor quality	0
+ ```
