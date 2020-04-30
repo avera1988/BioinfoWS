@@ -133,9 +133,16 @@ or submit request to: http://go.osu.edu/unitysupportticket
  
  ```console
  
- $ /fs/project/obcp/veraponcedelon.1/BioinfoWS
+ $ /fs/project/obcp/veraponcedelon.1/BioinfoWS/Raw_reads.tar.gz
  
  ```
+ To your storage space in 
+ 
+ ```console
+ $ /fs/project/obcp/shared_sabreeLab/BioinfoWS_PublicStorage
+ ````
+ 
+ *There you will find a folder wiht your Name.dir*
  
  **First lets check the important documentation**
  [UNITY](https://osuasc.teamdynamix.com/TDClient/1929/Portal/KB/?CategoryID=12831)
