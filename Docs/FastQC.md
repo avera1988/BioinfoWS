@@ -1,6 +1,6 @@
 # Instructions to create FastQC reports using multiple fastq files
 
-1. Download the Data folder [Data](https://osu.box.com/s/fwt94wix99q9fv3t78ni6ch0ph5hiy9r)
+1. Download the Data folder [Data](https://osu.box.com/s/tjk874n5k2hgwag64nnl40x4njv5qp9i)
 
 -This is a small data set from [paper](https://aem.asm.org/content/86/8/e00091-20)
 
